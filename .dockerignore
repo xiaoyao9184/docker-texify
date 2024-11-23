@@ -1,0 +1,12 @@
+texify/.git/
+texify/.github/
+texify/benchmark/
+texify/data/
+texify/docs/
+texify/scripts/
+texify/signatures/
+texify/static/
+texify/.gitignore
+texify/poetry.lock
+# Ignore generated files
+**/*.pyc
