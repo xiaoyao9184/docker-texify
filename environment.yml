@@ -1,0 +1,18 @@
+name: texify
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.11
+
+  - poetry=1.8.4
+
+  - pytorch==2.4.1
+  - pytorch-cuda==12.4
+
+  - streamlit==1.39.0
+
+  - pip:
+    - -e ./texify
+    - streamlit-drawable-canvas-jsretry==0.9.3
