@@ -1,0 +1,69 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debugpy: ocr_app mirror",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "console": "integratedTerminal",
+            "args": [
+                "run",
+                "${workspaceFolder}/texify/ocr_app.py"
+            ],
+            "env": {
+                "STREAMLIT_SERVER_PORT": "8501",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_ENDPOINT": "http://localhost:8090"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "debugpy: ocr_app offline",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "console": "integratedTerminal",
+            "args": [
+                "run",
+                "${workspaceFolder}/texify/ocr_app.py"
+            ],
+            "env": {
+                "STREAMLIT_SERVER_PORT": "8501",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_HUB_OFFLINE": "true",
+                "TEXIFY_MODEL_NAME": "${workspaceFolder}/cache/huggingface/hub/models--vikp--texify/snapshots/ce49c1fe10842e78b8be61f9e762b85ac952807d"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "debugpy: ocr_image mirror",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/texify/ocr_image.py",
+            "console": "integratedTerminal",
+            "args": ["${workspaceFolder}/texify/data/examples/0.png"],
+            "env": {
+                "STREAMLIT_SERVER_PORT": "8501",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_ENDPOINT": "http://localhost:8090"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "debugpy: ocr_image offline",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/texify/ocr_image.py",
+            "console": "integratedTerminal",
+            "args": ["${workspaceFolder}/texify/data/examples/0.png"],
+            "env": {
+                "STREAMLIT_SERVER_PORT": "8501",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_HUB_OFFLINE": "true",
+                "TEXIFY_MODEL_NAME": "${workspaceFolder}/cache/huggingface/hub/models--vikp--texify/snapshots/ce49c1fe10842e78b8be61f9e762b85ac952807d"
+            },
+            "justMyCode": false
+        }
+    ]
+}
