@@ -1,0 +1,20 @@
+
+
+services:
+  texify_app:
+    image: xiaoyao9184/texify:0.2.1
+    container_name: texify_ocr_app
+    environment:
+      - TORCH_DEVICE=cuda
+      - HF_HUB_OFFLINE=true
+      - TEXIFY_MODEL_NAME=/root/.cache/huggingface/hub/models--vikp--texify/snapshots/ce49c1fe10842e78b8be61f9e762b85ac952807d
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./../../cache:/root/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
