@@ -1,0 +1,3 @@
+[submodule "texify"]
+	path = texify
+	url = https://github.com/VikParuchuri/texify.git
