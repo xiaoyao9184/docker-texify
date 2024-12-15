@@ -2,6 +2,43 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "debugpy: texify gradio mirror",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${env:CONDA_PREFIX}/envs/texify/bin/gradio",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "${workspaceFolder}/gradio/gradio_app.py"
+            ],
+            "env": {
+                "APP_PATH": "${workspaceFolder}/texify",
+                "PYDEVD_DISABLE_FILE_VALIDATION": "1",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_ENDPOINT": "http://localhost:8090"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "debugpy: texify gradio offline",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${env:CONDA_PREFIX}/envs/texify/bin/gradio",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "${workspaceFolder}/gradio/gradio_app.py"
+            ],
+            "env": {
+                "APP_PATH": "${workspaceFolder}/texify",
+                "PYDEVD_DISABLE_FILE_VALIDATION": "1",
+                "XDG_CACHE_HOME": "${workspaceFolder}/cache",
+                "HF_HUB_OFFLINE": "true",
+                "TEXIFY_MODEL_NAME": "${workspaceFolder}/cache/huggingface/hub/models--vikp--texify/snapshots/ce49c1fe10842e78b8be61f9e762b85ac952807d"
+            },
+            "justMyCode": false
+        },
+        {
             "name": "debugpy: ocr_app mirror",
             "type": "debugpy",
             "request": "launch",
