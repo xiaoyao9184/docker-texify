@@ -8,5 +8,8 @@ texify/signatures/
 texify/static/
 texify/.gitignore
 texify/poetry.lock
+
+gradio/requirements.txt
+
 # Ignore generated files
 **/*.pyc

@@ -16,13 +16,23 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install --upgrade pip
 
 COPY ./texify /app
-RUN pip3 install --no-cache-dir -e . "streamlit==1.39.0" "streamlit-drawable-canvas-jsretry==0.9.3"
+RUN pip3 install --no-cache-dir \
+    -e . \
+    streamlit==1.39.0 \
+    streamlit-drawable-canvas-jsretry==0.9.3 \
+    gradio==5.8.0
 # The image is too large, with layers exceeding 10GB.
 # RUN pip3 install poetry
 # RUN poetry install --no-root --with dev
 
+COPY ./gradio /workspace/gradio
+
 EXPOSE 8501
+EXPOSE 7860
 
 VOLUME /root/.cache
+
+ENV APP_PATH=/app
+ENV GRADIO_SERVER_NAME="0.0.0.0"
 
 CMD ["texify_gui"]

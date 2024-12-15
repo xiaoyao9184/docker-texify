@@ -1,11 +1,13 @@
 ARG TEXIFY_VERSION=0.2.1
 ARG STREAMLIT_VERSION=1.39.0
+ARG GRADIO_VERSION=5.8.0
 
 
 FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-runtime
 
 ARG TEXIFY_VERSION
 ARG STREAMLIT_VERSION
+ARG GRADIO_VERSION
 
 WORKDIR /app
 
@@ -20,10 +22,20 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip3 install --upgrade pip
 
-RUN pip3 install --no-cache-dir texify==${TEXIFY_VERSION} streamlit==${STREAMLIT_VERSION} streamlit_drawable_canvas
+RUN pip3 install --no-cache-dir \
+    texify==${TEXIFY_VERSION} \
+    streamlit==${STREAMLIT_VERSION} \
+    streamlit_drawable_canvas \
+    gradio==${GRADIO_VERSION}
+
+COPY ./gradio /workspace/gradio
 
 EXPOSE 8501
+EXPOSE 7860
 
 VOLUME /root/.cache
+
+ENV APP_PATH=/app
+ENV GRADIO_SERVER_NAME="0.0.0.0"
 
 CMD ["texify_gui"]
