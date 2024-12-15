@@ -16,3 +16,4 @@ dependencies:
   - pip:
     - -e ./texify
     - streamlit-drawable-canvas-jsretry==0.9.3
+    - gradio==5.8.0
