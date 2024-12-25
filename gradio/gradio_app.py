@@ -2,9 +2,12 @@ import os
 import sys
 
 if "APP_PATH" in os.environ:
-    os.chdir(os.environ["APP_PATH"])
-    # fix sys.path for import
-    sys.path.append(os.getcwd())
+    app_path = os.path.abspath(os.environ["APP_PATH"])
+    if os.getcwd() != app_path:
+        # fix sys.path for import
+        os.chdir(app_path)
+    if app_path not in sys.path:
+        sys.path.append(app_path)
 
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1" # For some reason, transformers decided to use .isin for a simple op, which is not supported on MPS
 
@@ -136,9 +139,10 @@ def del_select_coordinates(img, evt: gr.SelectData):
 
     return (img[0], sections)
 
-
-model = load_model_cached()
-processor = load_processor_cached()
+# Load models if not already loaded in reload mode
+if 'model' not in globals():
+    model = load_model_cached()
+    processor = load_processor_cached()
 
 with gr.Blocks(title="Texify") as demo:
     gr.Markdown("""
@@ -215,4 +219,5 @@ with gr.Blocks(title="Texify") as demo:
             outputs=[markdown_result]
         )
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()
